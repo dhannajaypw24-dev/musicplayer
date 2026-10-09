@@ -92,31 +92,6 @@ export default function TrackList({ tracks, onSelect, selectedIndex }) {
               )}
             </button>
 
-            <a
-              href={track.src}
-              download={`${track.title}.mp3`}
-              target="_blank"
-              rel="noreferrer"
-              aria-label={`Download ${track.title}`}
-              title={`Download ${track.title}`}
-              className="relative z-10 flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-lg border border-gray-700 text-gray-400 transition-colors hover:border-indigo-500 hover:bg-indigo-500/10 hover:text-indigo-300 focus:outline-none focus:ring-2 focus:ring-indigo-500"
-            >
-              <svg
-                aria-hidden="true"
-                className="h-4 w-4"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                strokeWidth={1.8}
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M12 3v12m0 0 4-4m-4 4-4-4M5 17v3h14v-3"
-                />
-              </svg>
-            </a>
-
             {/* Hover shine */}
             <span className="absolute inset-0 rounded-xl bg-gradient-to-r from-transparent via-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
           </div>

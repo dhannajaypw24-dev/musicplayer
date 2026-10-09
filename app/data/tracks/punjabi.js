@@ -1,10 +1,14 @@
 export const punjabiTracks = [
   {
-    title: "Naal Naal Ve",
-    src: "https://pagalworld.is/wp-content/uploads/2026/10/Naal%20Naal%20Ve%20-%20Naal%20Naal%20Ve%20(128%20kbps)%20-%2027355.mp3",
+    title: "Raule Gaule (2026)",
+    src: "https://raagworld.com/upload_file/4/30/104/Raule_Gaule_Jassi_Sekhon_mp3_song.mp3",
   },
   {
-    title: "Ishq Nibhaavan De (Female Version)",
-    src: "https://raagworld.com/upload_file/7/27/58/Aitbaar.mp3",
+    title: "Dalle (2026)",
+    src: "https://raagworld.com/upload_file/4/30/104/Dalle_Jassi_Sekhon_mp3_song.mp3",
   },
+  {
+    title: "Khand Vs Loon (2026)",
+    src: "https://raagworld.com/upload_file/4/30/104/Khand_Vs_Loon_Jassi_Sekhon_mp3_song.mp3",
+  }
 ];
