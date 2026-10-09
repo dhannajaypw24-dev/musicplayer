@@ -17,11 +17,11 @@ export const tracks = [
 src: "https://raagworld.com/upload_file/7/27/63/Prem_Ki_Leela.mp3"
   },
   { 
-    title: "Tere Bin (From \"Simmba\")",
-    src: "https://pagalworld.is/wp-content/uploads/2026/10/Tere%20Bin%20(From%20&quot;Simmba&quot;)%20-%20Tere%20Bin%20(From%20Simmba)%20(128%20kbps)%20-%2027353.mp3"
+    title: "Chand Mera Dil Female Version",
+    src: "https://raagworld.com/upload_file/7/27/58/Chand_Mera_Dil_Title_Faheem_Abdullah_mp3_song.mp3"
   },
   {
-    title: "Tere Bin (From \"Simmba\")",
-    src: "https://pagalworld.is/wp-content/uploads/2026/10/Tere%20Bin%20(From%20&quot;Simmba&quot;)%20-%20Tere%20Bin%20(From%20Simmba)%20(128%20kbps)%20-%2027353.mp3"
+    title: "Ishq Nibhaavan De (Female Version)",
+    src: "https://raagworld.com/upload_file/7/27/58/Aitbaar.mp3"
   }
 ];
