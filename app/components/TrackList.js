@@ -13,11 +13,9 @@ export default function TrackList({ tracks, onSelect, selectedIndex }) {
         const isActive = selectedIndex === index;
 
         return (
-          <button
+          <div
             key={index}
-            onClick={() => onSelect(index)}
-            type="button"
-            className={`group relative w-full text-left flex items-center gap-3 pl-4 pr-3 py-3 rounded-xl border overflow-hidden transition-all duration-300 ${
+            className={`group relative w-full flex items-center gap-3 pl-4 pr-3 py-3 rounded-xl border overflow-hidden transition-all duration-300 ${
               isActive
                 ? "bg-gradient-to-r from-indigo-600/25 via-purple-600/15 to-transparent border-indigo-500/50 shadow-lg shadow-indigo-500/10 scale-[1.02]"
                 : "bg-gray-900/40 border-gray-800/80 hover:bg-gray-800/60 hover:border-gray-700 hover:translate-x-1 hover:shadow-md"
@@ -32,73 +30,96 @@ export default function TrackList({ tracks, onSelect, selectedIndex }) {
               }`}
             />
 
-            {/* Index number */}
-            <span
-              className={`flex-shrink-0 w-6 text-xs font-bold tabular-nums transition-colors ${
-                isActive
-                  ? "text-indigo-300"
-                  : "text-gray-500 group-hover:text-indigo-400"
-              }`}
+            <button
+              type="button"
+              onClick={() => onSelect(index)}
+              aria-current={isActive ? "true" : undefined}
+              className="relative z-10 flex min-w-0 flex-1 items-center gap-3 text-left"
             >
-              {String(index + 1).padStart(2, "0")}
-            </span>
-
-            {/* Music icon with pulse on active */}
-            <span
-              className={`flex-shrink-0 text-base transition-transform duration-300 ${
-                isActive
-                  ? "text-indigo-400 scale-110"
-                  : "text-gray-500 group-hover:text-gray-300 group-hover:scale-110"
-              }`}
-            >
-              🎵
-            </span>
-
-            {/* Track info */}
-            <div className="flex-1 min-w-0">
-              <p
-                className={`truncate text-sm font-semibold tracking-tight transition-colors ${
+              <span
+                className={`flex-shrink-0 w-6 text-xs font-bold tabular-nums transition-colors ${
                   isActive
-                    ? "text-white"
-                    : "text-gray-200 group-hover:text-white"
+                    ? "text-indigo-300"
+                    : "text-gray-500 group-hover:text-indigo-400"
                 }`}
               >
-                {track.title}
-              </p>
-              {track.artist && (
+                {String(index + 1).padStart(2, "0")}
+              </span>
+
+              <span
+                className={`flex-shrink-0 text-base transition-transform duration-300 ${
+                  isActive
+                    ? "text-indigo-400 scale-110"
+                    : "text-gray-500 group-hover:text-gray-300 group-hover:scale-110"
+                }`}
+              >
+                🎵
+              </span>
+
+              <span className="flex-1 min-w-0">
                 <p
-                  className={`truncate text-xs mt-0.5 transition-colors ${
+                  className={`truncate text-sm font-semibold tracking-tight transition-colors ${
                     isActive
-                      ? "text-indigo-300/80"
-                      : "text-gray-500 group-hover:text-gray-400"
+                      ? "text-white"
+                      : "text-gray-200 group-hover:text-white"
                   }`}
                 >
-                  {track.artist}
+                  {track.title}
                 </p>
-              )}
-            </div>
-
-            {/* Animated equalizer when active */}
-            {isActive && (
-              <span className="flex items-end gap-[3px] h-5 flex-shrink-0">
-                <span
-                  className="w-[3px] rounded-full bg-gradient-to-t from-indigo-500 to-purple-400 animate-eq-1"
-                />
-                <span
-                  className="w-[3px] rounded-full bg-gradient-to-t from-indigo-500 to-purple-400 animate-eq-2"
-                />
-                <span
-                  className="w-[3px] rounded-full bg-gradient-to-t from-indigo-500 to-purple-400 animate-eq-3"
-                />
-                <span
-                  className="w-[3px] rounded-full bg-gradient-to-t from-indigo-500 to-purple-400 animate-eq-4"
-                />
+                {track.artist && (
+                  <span
+                    className={`mt-0.5 block truncate text-xs transition-colors ${
+                      isActive
+                        ? "text-indigo-300/80"
+                        : "text-gray-500 group-hover:text-gray-400"
+                    }`}
+                  >
+                    {track.artist}
+                  </span>
+                )}
               </span>
-            )}
+
+              {isActive && (
+                <span
+                  aria-label="Currently selected"
+                  className="flex items-end gap-[3px] h-5 flex-shrink-0"
+                >
+                  <span className="w-[3px] rounded-full bg-gradient-to-t from-indigo-500 to-purple-400 animate-eq-1" />
+                  <span className="w-[3px] rounded-full bg-gradient-to-t from-indigo-500 to-purple-400 animate-eq-2" />
+                  <span className="w-[3px] rounded-full bg-gradient-to-t from-indigo-500 to-purple-400 animate-eq-3" />
+                  <span className="w-[3px] rounded-full bg-gradient-to-t from-indigo-500 to-purple-400 animate-eq-4" />
+                </span>
+              )}
+            </button>
+
+            <a
+              href={track.src}
+              download={`${track.title}.mp3`}
+              target="_blank"
+              rel="noreferrer"
+              aria-label={`Download ${track.title}`}
+              title={`Download ${track.title}`}
+              className="relative z-10 flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-lg border border-gray-700 text-gray-400 transition-colors hover:border-indigo-500 hover:bg-indigo-500/10 hover:text-indigo-300 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+            >
+              <svg
+                aria-hidden="true"
+                className="h-4 w-4"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                strokeWidth={1.8}
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M12 3v12m0 0 4-4m-4 4-4-4M5 17v3h14v-3"
+                />
+              </svg>
+            </a>
 
             {/* Hover shine */}
             <span className="absolute inset-0 rounded-xl bg-gradient-to-r from-transparent via-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
-          </button>
+          </div>
         );
       })}
     </div>

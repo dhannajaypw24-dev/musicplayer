@@ -14,6 +14,7 @@ const Header = () => {
     { name: "Punjabi", href: "/punjabi" },
     { name: "Indipop", href: "/indipop" },
     { name: "Haryanvi", href: "/haryanvi" },
+    { name: "Bhojpuri", href: "/bhojpuri" },
   ];
 
   return (

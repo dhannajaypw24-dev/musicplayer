@@ -2,6 +2,7 @@ import { haryanviTracks } from "./haryanvi";
 import { bollywoodTracks } from "./bollywood";
 import { punjabiTracks } from "./punjabi";
 import { indipopTracks } from "./indipop";
+import { bhojpuriTracks } from "./bhojpuri";
 
 export const allTracks = [
   haryanviTracks[0],
@@ -12,4 +13,5 @@ export const allTracks = [
   indipopTracks[0],
   indipopTracks[1],
   bollywoodTracks[4],
+  ...bhojpuriTracks,
 ];

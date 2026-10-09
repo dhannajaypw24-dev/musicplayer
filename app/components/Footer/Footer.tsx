@@ -1,10 +1,27 @@
 "use client";
 
+import Link from "next/link";
+
 const Footer = () => {
   const currentYear = new Date().getFullYear();
 
-  const productLinks = ["Features", "Pricing", "Integrations", "Changelog", "Documentation"];
-  const companyLinks = ["About Us", "Careers", "Blog", "Press", "Partners"];
+  const pageLinks = [
+    { name: "Home", href: "/" },
+    { name: "Player", href: "/player" },
+    { name: "Singers", href: "/singers" },
+    { name: "Bollywood", href: "/bollywood" },
+    { name: "Punjabi", href: "/punjabi" },
+    { name: "Indipop", href: "/indipop" },
+    { name: "Haryanvi", href: "/haryanvi" },
+    { name: "Bhojpuri", href: "/bhojpuri" },
+  ];
+  const companyLinks = [
+    { name: "About Us", href: "/about-us" },
+    { name: "Careers", href: "/careers" },
+    { name: "Blog", href: "/blog" },
+    { name: "Press", href: "/press" },
+    { name: "Partners", href: "/partners" },
+  ];
 
   return (
     <footer className="bg-gray-900 text-gray-300">
@@ -18,7 +35,7 @@ const Footer = () => {
             </h3>
             <p className="text-sm leading-relaxed text-gray-400">
               Your ultimate destination for the latest Bollywood, Punjabi, Indipop,
-              and Haryanvi music. Stream, discover, and enjoy unlimited songs.
+              Haryanvi, and Bhojpuri music. Stream, discover, and enjoy songs.
             </p>
 
             {/* Social icons */}
@@ -62,20 +79,20 @@ const Footer = () => {
             </div>
           </div>
 
-          {/* Column 1 - Categories */}
+          {/* Column 1 - App pages */}
           <div>
             <h4 className="text-sm font-semibold text-white uppercase tracking-wider mb-4">
-              Categories
+              Pages
             </h4>
             <ul className="space-y-3">
-              {["Bollywood", "Punjabi", "Indipop", "Haryanvi", "Singers"].map((item) => (
-                <li key={item}>
-                  <a
-                    href="#"
+              {pageLinks.map((link) => (
+                <li key={link.href}>
+                  <Link
+                    href={link.href}
                     className="text-sm text-gray-400 hover:text-white transition-colors duration-200 inline-block"
                   >
-                    {item}
-                  </a>
+                    {link.name}
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -87,14 +104,14 @@ const Footer = () => {
               Company
             </h4>
             <ul className="space-y-3">
-              {companyLinks.map((item) => (
-                <li key={item}>
-                  <a
-                    href="#"
+              {companyLinks.map((link) => (
+                <li key={link.href}>
+                  <Link
+                    href={link.href}
                     className="text-sm text-gray-400 hover:text-white transition-colors duration-200 inline-block"
                   >
-                    {item}
-                  </a>
+                    {link.name}
+                  </Link>
                 </li>
               ))}
             </ul>
