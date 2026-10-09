@@ -23,5 +23,17 @@ src: "https://raagworld.com/upload_file/7/27/63/Prem_Ki_Leela.mp3"
   {
     title: "Ishq Nibhaavan De (Female Version)",
     src: "https://raagworld.com/upload_file/7/27/58/Aitbaar.mp3"
+  },
+  {
+    title: "Khasiyat",
+    src: "https://raagworld.com/upload_file/7/27/58/Khasiyat_Raghav_Chaitanya_Jonita_Gandhi_mp3_song.mp3"
+  }
+  ,{
+    title: "Phir Ajnabi Ban Jaayenge",
+    src: "https://raagworld.com/upload_file/7/27/58/Phir_Ajnabi_Junaid_Ahmed_mp3_song.mp3"
+  },
+  {
+    title: "Tumhi Ko Chahte Hain",
+    src: "https://raagworld.com/upload_file/7/27/58/Tumhi_Ko_From_quotChand_Mera_Dilquot_Raghav_Chaitanya_Suvarna_Tiwari_mp3_song.mp3"
   }
 ];
