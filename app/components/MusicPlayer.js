@@ -5,6 +5,7 @@ import { useState, useRef, useEffect, useCallback } from "react";
 export default function MusicPlayer({
   tracks = [],
   initialTrack = 0,
+  playRequest = 0,
   onNext,
   onPrev,
 }) {
@@ -18,7 +19,13 @@ export default function MusicPlayer({
   // Sync when parent changes initialTrack
   useEffect(() => {
     setCurrentTrackIndex(initialTrack);
+    setCurrentTime(0);
+    setDuration(0);
   }, [initialTrack]);
+
+  useEffect(() => {
+    if (playRequest > 0) setIsPlaying(true);
+  }, [playRequest]);
 
   const safeIndex = tracks.length ? currentTrackIndex % tracks.length : 0;
   const track = tracks[safeIndex];
