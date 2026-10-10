@@ -38,5 +38,10 @@ export const chhathTracks = [
     title: "Jal Beech Khada Hoib (Pawan Singh)",
     artist: "Pawan Singh",
     src: "https://ia803104.us.archive.org/28/items/jal-beech-khada-hoee/Jal%20Beech%20Khada%20Hoee.mp3",
+  },
+  {
+    title: "Chhathi Maiya (Kalpana Patowary, Kaushal Kishore)",
+    artist: "Kalpana Patowary, Kaushal Kishore",
+    src: "https://bhojpuriwap.online/siteuploads/files/sfd75/37209/Chhathi%20Maiya%28BhojpuriWap.In%29.mp3",
   }
 ];
