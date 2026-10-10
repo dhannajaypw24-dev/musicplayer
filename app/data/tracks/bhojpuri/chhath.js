@@ -33,5 +33,10 @@ export const chhathTracks = [
     title: "Patna Ke Haat Per Nariyar",
     artist: "Anuradha Paudwal, Kavita Paudwal, Sharda Sinha, Ajit Kumar",
     src: "https://dn710009.ca.archive.org/0/items/patna-ke-haat-par-nariyar/Patna%20Ke%20Haat%20Par%20Nariyar.mp3",
+  },
+  {
+    title: "Jal Beech Khada Hoib (Pawan Singh)",
+    artist: "Pawan Singh",
+    src: "https://ia803104.us.archive.org/28/items/jal-beech-khada-hoee/Jal%20Beech%20Khada%20Hoee.mp3",
   }
 ];
