@@ -44,6 +44,11 @@ export const bhojpuriTracks = [
     title: 'Laga Ke Fair Lovely (2026)',
     artist: "Khesari Lal Yadav",
     src: "https://bhojpuriwap.online/siteuploads/files/sfd42/20817/Laga%20Ke%20Fair%20Lovely%28BhojpuriWap.In%29.mp3",
+  },
+  {
+    title: 'Lollypop Lagelu',
+    artist: "Pawan Singh, Palak Muchhal",
+    src: "https://bhojpuriwap.online/siteuploads/files/sfd20/9914/Lollypop%20Lagelu%28BhojpuriWap.In%29.mp3"
   }
 
 ];
