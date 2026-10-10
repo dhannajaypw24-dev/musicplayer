@@ -34,7 +34,7 @@ export const bhojpuriArtists = [
   "Khesari Lal Yadav",
   "Indu Sonali",
   "Kalpana",
-  "Khushboo Uttam",
+  "Manoj Tiwari",
   "Arvind Akela Kallu Ji",
   "Rakesh Mishra",
 ];
