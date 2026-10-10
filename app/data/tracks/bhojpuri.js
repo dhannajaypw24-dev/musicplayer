@@ -47,8 +47,13 @@ export const bhojpuriTracks = [
   },
   {
     title: 'Lollypop Lagelu',
-    artist: "Pawan Singh, Palak Muchhal",
+    artist: "Pawan Singh",
     src: "https://bhojpuriwap.online/siteuploads/files/sfd20/9914/Lollypop%20Lagelu%28BhojpuriWap.In%29.mp3"
+  },
+  {
+    title: 'Julmi Tori Ankhiya',
+    artist: "Manoj Tiwari",
+    src: "https://dn710008.ca.archive.org/0/items/nimiya-patiya-jhari-jaye-ho/Nimiya%20Patiya%20Jhari%20Jaye%20Ho.mp3"
   }
 
 ];
