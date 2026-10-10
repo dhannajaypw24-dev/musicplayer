@@ -43,5 +43,9 @@ export const chhathTracks = [
     title: "Chhathi Maiya (Kalpana Patowary, Kaushal Kishore)",
     artist: "Kalpana Patowary, Kaushal Kishore",
     src: "https://bhojpuriwap.online/siteuploads/files/sfd75/37209/Chhathi%20Maiya%28BhojpuriWap.In%29.mp3",
+  },{
+    title: "Chhath Vrat (Kalpana Patowary, Sugham Singh)",
+    artist: "Kalpana Patowary",
+    src: "https://bhojpuriwap.online/siteuploads/files/sfd75/37206/Chhath%20Vrat%28BhojpuriWap.In%29.mp3",
   }
 ];
