@@ -3,9 +3,15 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { createPortal } from "react-dom";
+import {
+  bhojpuriArtists,
+  bhojpuriCollections,
+  getArtistHref,
+} from "../../data/bhojpuriCatalog";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isBhojpuriOpen, setIsBhojpuriOpen] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
@@ -28,6 +34,17 @@ const Header = () => {
       window.removeEventListener("keydown", closeOnEscape);
     };
   }, [isMenuOpen]);
+
+  useEffect(() => {
+    if (!isBhojpuriOpen) return;
+
+    const closeOnEscape = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setIsBhojpuriOpen(false);
+    };
+
+    window.addEventListener("keydown", closeOnEscape);
+    return () => window.removeEventListener("keydown", closeOnEscape);
+  }, [isBhojpuriOpen]);
 
   const navLinks = [
     { name: "Home", href: "/" },
@@ -95,6 +112,40 @@ const Header = () => {
               {link.name}
             </Link>
           ))}
+          <div className="border-t border-gray-100 px-3 py-3">
+            <p className="text-xs font-semibold uppercase tracking-wider text-gray-400">
+              Bhojpuri collections
+            </p>
+            <div className="mt-2 space-y-1">
+              {bhojpuriCollections.map((collection) => (
+                <Link
+                  key={collection.id}
+                  href={collection.href}
+                  onClick={() => setIsMenuOpen(false)}
+                  tabIndex={isMenuOpen ? 0 : -1}
+                  className="block rounded-lg px-3 py-2 text-sm font-medium text-gray-700 transition-colors hover:bg-indigo-50 hover:text-indigo-600"
+                >
+                  {collection.title}
+                </Link>
+              ))}
+            </div>
+            <p className="mt-4 text-xs font-semibold uppercase tracking-wider text-gray-400">
+              Top singers
+            </p>
+            <div className="mt-2 grid grid-cols-2 gap-1">
+              {bhojpuriArtists.map((artist) => (
+                <Link
+                  key={artist}
+                  href={getArtistHref(artist)}
+                  onClick={() => setIsMenuOpen(false)}
+                  tabIndex={isMenuOpen ? 0 : -1}
+                  className="rounded-lg px-3 py-2 text-sm text-gray-700 transition-colors hover:bg-indigo-50 hover:text-indigo-600"
+                >
+                  {artist}
+                </Link>
+              ))}
+            </div>
+          </div>
         </div>
       </nav>
     </div>
@@ -117,15 +168,49 @@ const Header = () => {
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center gap-1">
-            {navLinks.map((link) => (
-              <Link
-                key={link.name}
-                href={link.href}
-                className="relative px-3 py-2 text-sm font-medium text-gray-700 rounded-lg hover:text-indigo-600 hover:bg-indigo-50 transition-colors duration-200"
-              >
-                {link.name}
-              </Link>
-            ))}
+            {navLinks.map((link) =>
+              link.name === "Bhojpuri" ? (
+                <div key={link.name} className="flex items-center">
+                  <Link
+                    href={link.href}
+                    className="relative rounded-l-lg px-3 py-2 text-sm font-medium text-gray-700 transition-colors duration-200 hover:bg-indigo-50 hover:text-indigo-600"
+                  >
+                    {link.name}
+                  </Link>
+                  <button
+                    type="button"
+                    aria-label="Toggle Bhojpuri mega menu"
+                    aria-expanded={isBhojpuriOpen}
+                    aria-controls="bhojpuri-mega-menu"
+                    onClick={() => setIsBhojpuriOpen((open) => !open)}
+                    className="rounded-r-lg px-2 py-2 text-gray-600 transition-colors hover:bg-indigo-50 hover:text-indigo-600 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                  >
+                    <svg
+                      className={`h-4 w-4 transition-transform ${
+                        isBhojpuriOpen ? "rotate-180" : ""
+                      }`}
+                      viewBox="0 0 20 20"
+                      fill="currentColor"
+                      aria-hidden="true"
+                    >
+                      <path
+                        fillRule="evenodd"
+                        d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.09 1.032l-4.25 4.5a.75.75 0 01-1.09 0l-4.25-4.5a.75.75 0 01.02-1.06z"
+                        clipRule="evenodd"
+                      />
+                    </svg>
+                  </button>
+                </div>
+              ) : (
+                <Link
+                  key={link.name}
+                  href={link.href}
+                  className="relative rounded-lg px-3 py-2 text-sm font-medium text-gray-700 transition-colors duration-200 hover:bg-indigo-50 hover:text-indigo-600"
+                >
+                  {link.name}
+                </Link>
+              )
+            )}
           </nav>
 
           {/* Desktop CTA */}
@@ -158,6 +243,75 @@ const Header = () => {
           </button>
         </div>
       </div>
+
+      {isBhojpuriOpen && (
+        <div
+          id="bhojpuri-mega-menu"
+          className="absolute left-1/2 top-full z-50 hidden w-[min(58rem,calc(100vw-2rem))] -translate-x-1/2 rounded-2xl border border-gray-200 bg-white p-6 shadow-2xl md:block"
+        >
+          <div className="grid gap-8 md:grid-cols-[1.1fr_1.1fr_1.5fr]">
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-wider text-indigo-600">
+                Bhojpuri music
+              </p>
+              <Link
+                href="/bhojpuri"
+                onClick={() => setIsBhojpuriOpen(false)}
+                className="mt-3 block text-lg font-bold text-gray-900 hover:text-indigo-600"
+              >
+                Browse all Bhojpuri songs
+              </Link>
+              <p className="mt-2 text-sm leading-6 text-gray-500">
+                Find regional favorites, festival music, and popular singers.
+              </p>
+              <Link
+                href="/bhojpuri#tracks"
+                onClick={() => setIsBhojpuriOpen(false)}
+                className="mt-4 inline-flex text-sm font-semibold text-indigo-600 hover:text-indigo-500"
+              >
+                Open music player <span aria-hidden="true" className="ml-1">→</span>
+              </Link>
+            </div>
+            <div>
+              <h2 className="text-xs font-semibold uppercase tracking-wider text-gray-400">
+                Festival &amp; DJ songs
+              </h2>
+              <ul className="mt-3 space-y-1">
+                {bhojpuriCollections.map((collection) => (
+                  <li key={collection.id}>
+                    <Link
+                      href={collection.href}
+                      onClick={() => setIsBhojpuriOpen(false)}
+                      className="flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium text-gray-700 transition-colors hover:bg-indigo-50 hover:text-indigo-600"
+                    >
+                      <span aria-hidden="true">{collection.icon}</span>
+                      {collection.title}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div>
+              <h2 className="text-xs font-semibold uppercase tracking-wider text-gray-400">
+                Top artists &amp; singers
+              </h2>
+              <ul className="mt-3 grid grid-cols-2 gap-1">
+                {bhojpuriArtists.map((artist) => (
+                  <li key={artist}>
+                    <Link
+                      href={getArtistHref(artist)}
+                      onClick={() => setIsBhojpuriOpen(false)}
+                      className="block rounded-lg px-3 py-2 text-sm text-gray-700 transition-colors hover:bg-indigo-50 hover:text-indigo-600"
+                    >
+                      {artist}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Render outside the sticky header so the drawer is not trapped by its stacking context. */}
       {isMounted && createPortal(mobileNavigation, document.body)}

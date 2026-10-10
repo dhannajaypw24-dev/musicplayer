@@ -1,6 +1,37 @@
 export const bhojpuriTracks = [
     {
-    title: 'bhojpuri song 1',
-    src: "https://pagalworld.is/wp-content/uploads/2026/10/Phata%20Patakha%20(From%20&quot;Nayyi%20Navelli&quot;)%20-%20Phata%20Patakha%20(From%20Nayyi%20Navelli)%20(128%20kbps)%20-%2027367.mp3",
+    title: 'Naseeb - Pawan Singh (2026)',
+    artist: "Pawan Singh",
+    src: "https://128.pagalnew.com/download-128k.php?id=54203",
   },
+  {
+    title: 'Babuaan Song - Sooryavansham - Pawan Singh (2026)',
+    artist: "Pawan Singh",
+    src: "https://128.pagalnew.com/download-128k.php?id=48911",
+  },
+  {
+    title: 'Ankhiya Me Nasa Ba Song - Sooryavansham - Pawan Singh (2024)',
+    artist: "Pawan Singh",
+    src: "https://128.pagalnew.com/download-128k.php?id=48642",
+  },
+  {
+    title: 'Dante Se Odhani Dabake Song - Sooryavansham - Pawan Singh (2026)',
+    artist: "Pawan Singh",
+    src: "https://128.pagalnew.com/download-128k.php?id=47622",
+  },
+  {
+    title: 'Aara Me Dubara 2 (2026)',
+    src: "https://128.pagalnew.com/download-128k.php?id=54773",
+  },
+  {
+    title: 'Falana Ke Patoh (2026)',
+    src: "https://128.pagalnew.com/download-128k.php?id=54666",
+  },
+  {
+    title: 'Oth Ke Madhuiya (From "Laakhan Singh") (2026)',
+    src: "https://128.pagalnew.com/download-128k.php?id=54665", 
+  }
+  ,
+
+
 ];

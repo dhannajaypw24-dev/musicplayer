@@ -14,6 +14,7 @@ export default function MusicPlayer({
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
   const [volume, setVolume] = useState(1);
+  const [playbackError, setPlaybackError] = useState("");
   const audioRef = useRef(null);
 
   // Sync when parent changes initialTrack
@@ -30,16 +31,39 @@ export default function MusicPlayer({
   const safeIndex = tracks.length ? currentTrackIndex % tracks.length : 0;
   const track = tracks[safeIndex];
 
+  useEffect(() => {
+    setPlaybackError("");
+    setCurrentTime(0);
+    setDuration(0);
+  }, [track?.src]);
+
   // Play / pause
   useEffect(() => {
     const audio = audioRef.current;
     if (!audio) return;
-    if (isPlaying) {
-      audio.play().catch((err) => console.error("Playback error:", err));
-    } else {
+    if (!isPlaying) {
       audio.pause();
+      return;
     }
-  }, [isPlaying, currentTrackIndex]);
+
+    let isCurrentRequest = true;
+    audio.play().catch((error) => {
+      if (!isCurrentRequest || error?.name === "AbortError") return;
+      console.error("Playback error:", error);
+      setIsPlaying(false);
+      setPlaybackError(
+        error?.name === "NotAllowedError"
+          ? "Your browser blocked playback. Press Play to try again."
+          : error?.name === "NotSupportedError"
+            ? "This song URL is not a supported audio source. Use a direct MP3, AAC, or OGG file URL."
+            : "Could not start this song. The audio source may be unavailable."
+      );
+    });
+
+    return () => {
+      isCurrentRequest = false;
+    };
+  }, [isPlaying, currentTrackIndex, track?.src]);
 
   const playNext = useCallback(() => {
     setCurrentTrackIndex((prev) => (prev + 1) % Math.max(tracks.length, 1));
@@ -93,19 +117,39 @@ export default function MusicPlayer({
 
     const onTime = () => setCurrentTime(audio.currentTime);
     const onLoaded = () => setDuration(audio.duration || 0);
-    const onPlay = () => setIsPlaying(true);
+    const onPlay = () => {
+      setIsPlaying(true);
+      setPlaybackError("");
+    };
     const onPause = () => setIsPlaying(false);
+    const onError = () => {
+      const errorCode = audio.error?.code;
+      if (errorCode === MediaError.MEDIA_ERR_ABORTED) return;
+
+      setIsPlaying(false);
+      setPlaybackError(
+        errorCode === MediaError.MEDIA_ERR_NETWORK
+          ? "A network error stopped this song. Check your connection and try again."
+          : errorCode === MediaError.MEDIA_ERR_DECODE
+            ? "This audio file could not be played."
+            : errorCode === MediaError.MEDIA_ERR_SRC_NOT_SUPPORTED
+              ? "This song URL did not provide a supported audio file. Use a direct MP3, AAC, or OGG file URL."
+            : "This song could not be loaded. Its audio source may be unavailable."
+      );
+    };
 
     audio.addEventListener("timeupdate", onTime);
     audio.addEventListener("loadedmetadata", onLoaded);
     audio.addEventListener("play", onPlay);
     audio.addEventListener("pause", onPause);
+    audio.addEventListener("error", onError);
 
     return () => {
       audio.removeEventListener("timeupdate", onTime);
       audio.removeEventListener("loadedmetadata", onLoaded);
       audio.removeEventListener("play", onPlay);
       audio.removeEventListener("pause", onPause);
+      audio.removeEventListener("error", onError);
     };
   }, []);
 
@@ -158,6 +202,11 @@ export default function MusicPlayer({
           <p className="mt-1 text-sm text-gray-400">{track.artist}</p>
         )}
       </div>
+      {playbackError && (
+        <p role="alert" className="text-center text-sm text-amber-300">
+          {playbackError}
+        </p>
+      )}
 
       {/* Progress bar */}
       <div className="space-y-2">
