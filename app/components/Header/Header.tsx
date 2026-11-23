@@ -55,6 +55,7 @@ const Header = () => {
     { name: "Indipop", href: "/indipop" },
     { name: "Haryanvi", href: "/haryanvi" },
     { name: "Bhojpuri", href: "/bhojpuri" },
+    { name: "Video", href: "/video" },
   ];
 
   const mobileNavigation = (
@@ -162,7 +163,7 @@ const Header = () => {
             </span>
             <h1 className="text-lg sm:text-xl font-bold tracking-tight text-gray-900">
               Mp3 Player{" "}
-              <span className="text-indigo-600">By Dj MIX</span>
+              <span className="text-indigo-600">By Dhannajay</span>
             </h1>
           </Link>
 
@@ -214,10 +215,15 @@ const Header = () => {
           </nav>
 
           {/* Desktop CTA */}
+        
+
           <div className="hidden md:flex items-center gap-3">
-            <button className="px-4 py-2 text-sm font-medium text-white bg-indigo-600 rounded-lg hover:bg-indigo-500 transition-colors duration-200 shadow-sm">
+            <Link
+              href="/login"
+              className="px-4 py-2 text-sm font-medium text-white bg-indigo-600 rounded-lg hover:bg-indigo-500 transition-colors duration-200 shadow-sm"
+            >
               Sign In
-            </button>
+            </Link>
           </div>
 
           {/* Mobile Menu Button */}
